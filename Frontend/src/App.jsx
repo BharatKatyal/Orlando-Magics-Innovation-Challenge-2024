@@ -5,6 +5,19 @@ import { useState } from "react";
 import seats from "./assets/seats_sample.json";
 import zones from "./assets/seat_zones.json";
 import generateRandomPrice from "./Components/generateRandomPrice";
+import Promenade from "./assets/Seats/Promenade.jpeg";
+import Loge from "./assets/Seats/Loge.jpeg";
+import Terrace from "./assets/Seats/Terrace.jpeg";
+import Club from "./assets/Seats/Club.jpeg";
+import Ultimate from "./assets/Seats/Ultimate.jpeg";
+
+const Images = {
+  Promenade: Promenade,
+  Loge: Loge,
+  Terrace: Terrace,
+  Club: Club,
+  Ultimate: Ultimate,
+};
 
 export default function App() {
   const [popup, setPopup] = useState(null);
@@ -47,7 +60,9 @@ export default function App() {
         <div className="col-span-5">
           <div className="flex">
             <h3 className="text-xl font-bold">{Title}</h3>
-            <p className="ml-auto text-sm text-gray-500">{Price}</p>
+            <p className="ml-auto text-sm text-gray-500 tracking-wide">
+              {Price}
+            </p>
           </div>
           <p className="text-sm text-white bg-magic_blue w-fit px-2 rounded-lg mt-3">
             {Description}
@@ -73,7 +88,7 @@ export default function App() {
                 Price={generateRandomPrice(zone)}
                 Title={seat.title}
                 Description={zone}
-                Image={seat.image != null ? seat.image : SeatImage}
+                Image={Images[zone]}
               />
             );
           })}
