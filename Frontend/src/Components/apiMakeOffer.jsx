@@ -7,7 +7,7 @@ export default async function (seat, price) {
         id: "34",
         seat_number: seat,
         offer_amount: parseInt(price),
-        email: "gamesniper321@gmail.com",
+        email: "bharatkatyaltravel@icloud.com",
       }),
       headers: {
         "Content-Type": "application/json",
