@@ -3,24 +3,24 @@ export default function generateRandomPrice(zone) {
 
   switch (zone) {
     case "Promenade":
-      min = 30;
-      max = 120;
+      min = 20;
+      max = 50;
       break;
     case "Loge":
-      min = 80;
-      max = 200;
+      min = 50;
+      max = 85;
       break;
     case "Terrace":
-      min = 120;
-      max = 500;
+      min = 86;
+      max = 250;
       break;
     case "Club":
-      min = 800;
-      max = 1500;
+      min = 280;
+      max = 400;
       break;
     case "Ultimate":
-      min = 1000;
-      max = 2000;
+      min = 401;
+      max = 800;
       break;
     default:
       min = 50;

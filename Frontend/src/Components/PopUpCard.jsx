@@ -1,6 +1,6 @@
 import ApplePayButton from "../assets/apple-pay.png";
 import Check from "../assets/check_icon.svg";
-import generateRandomPrice from "./generateRandomPrice";
+import { useState } from "react";
 
 export function PopUpCardHidden({ Description, Image, Title }) {
   return (
@@ -27,6 +27,7 @@ export function PopUpCardHidden({ Description, Image, Title }) {
 }
 
 export function PopUpCard({ Description, Image, Title, onPay, Price }) {
+  const [price, setPrice] = useState("");
   return (
     <div className="fixed inset-0 flex z-50 bg-black bg-opacity-50">
       <div className="mx-5 h-[100vh] bg-magic_blue_light rounded-lg animate-down-to-up translate-y-[10%]">
@@ -45,13 +46,16 @@ export function PopUpCard({ Description, Image, Title, onPay, Price }) {
               max="10000.00"
               step="0.01"
               placeholder="1000.00"
+              onChange={(event) => setPrice(event.target.value)}
               className="text-4xl w-42 h-14 text-center text-white bg-magic_blue font-bold mt-[5vh] rounded-lg outline-none"
             />
           </div>
           <p className="text-center opacity-30">{`Suggested ${Price}`}</p>
           <img
-            onClick={() => onPay()}
-            className="mt-[24vh] w-64 mx-auto hover:opacity-80 cursor-pointer"
+            onClick={() => {
+              if (price != "") onPay();
+            }}
+            className="mt-[24vh] w-64 mx-auto"
             src={ApplePayButton}
           />
         </div>

@@ -1,15 +1,16 @@
 import { PopUpCard, PopUpCardHidden } from "./Components/PopUpCard";
-import SeatImage from "./assets/SeatFirstPerson.jpg";
 import MagicLogo from "./assets/magic-logo.png";
-import { useState } from "react";
-import seats from "./assets/seats_sample.json";
-import zones from "./assets/seat_zones.json";
+import { useEffect, useState } from "react";
+// import seats from "./assets/seats_sample.json";
+// import zones from "./assets/seat_zones.json";
 import generateRandomPrice from "./Components/generateRandomPrice";
 import Promenade from "./assets/Seats/Promenade.jpeg";
 import Loge from "./assets/Seats/Loge.jpeg";
 import Terrace from "./assets/Seats/Terrace.jpeg";
 import Club from "./assets/Seats/Club.jpeg";
 import Ultimate from "./assets/Seats/Ultimate.jpeg";
+
+import apiGetSeats from "./Components/apiGetSeats";
 
 const Images = {
   Promenade: Promenade,
@@ -20,8 +21,6 @@ const Images = {
 };
 
 export default function App() {
-  const [popup, setPopup] = useState(null);
-
   function SeatCard({ Title, Description, Image, Price }) {
     return (
       <div
@@ -72,6 +71,16 @@ export default function App() {
     );
   }
 
+  const [seats, setSeats] = useState([]);
+
+  const [popup, setPopup] = useState(null);
+  useEffect(() => {
+    (async () => {
+      const res = await apiGetSeats();
+      setSeats(res);
+    })();
+  }, []);
+
   return (
     <div className="mt-4 mx-5">
       {popup}
@@ -81,14 +90,13 @@ export default function App() {
         <h1 className="text-2xl font-bold pt-5 pb-2">Seats</h1>
         <div className="overflow-y-scroll h-[56vh]">
           {seats.map((seat) => {
-            const zone = zones[Math.floor(Math.random() * zones.length)];
             return (
               <SeatCard
                 key={Date.now() + Math.random()}
-                Price={generateRandomPrice(zone)}
-                Title={seat.title}
-                Description={zone}
-                Image={Images[zone]}
+                Price={generateRandomPrice(seat.zone)}
+                Title={seat.id}
+                Description={seat.zone}
+                Image={Images[seat.zone]}
               />
             );
           })}
