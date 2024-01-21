@@ -11,11 +11,16 @@ export default {
       },
       animation: {
         "down-to-up": "downToUp .3s ease-in-out",
+        "up-to-down": "upToDown .3s ease-in-out 1s",
       },
       keyframes: {
         downToUp: {
           "0%": { transform: "translateY(100%)" },
           "100%": { transform: "translateY(10%)" },
+        },
+        upToDown: {
+          "0%": { transform: "translateY(10%)" },
+          "100%": { transform: "translateY(100%)" },
         },
       },
     },
