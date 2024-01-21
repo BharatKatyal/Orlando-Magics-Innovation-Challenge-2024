@@ -11,6 +11,7 @@ import Club from "./assets/Seats/Club.jpeg";
 import Ultimate from "./assets/Seats/Ultimate.jpeg";
 
 import apiGetSeats from "./Components/apiGetSeats";
+import apiMakeOffer from "./Components/apiMakeOffer";
 
 const Images = {
   Promenade: Promenade,
@@ -43,6 +44,9 @@ export default function App() {
                 await new Promise((r) => setTimeout(r, 1300));
 
                 setPopup(null);
+
+                const res = await apiMakeOffer(Title, Price);
+                console.log(res);
               }}
             />
           )
